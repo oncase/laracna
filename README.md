@@ -1,1 +1,3 @@
-# laracna
+# Laracna
+
+A web spider.
