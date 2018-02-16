@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Spider{
-	private static final int MAX_PAGES_TO_SEARCH = 1000;
+	private static final int MAX_PAGES_TO_SEARCH = 100;
 	private Set<String> pagesVisited = new HashSet<String>();
 	private List<String> pagesToVisit = new LinkedList<String>();
 

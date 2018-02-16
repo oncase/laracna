@@ -20,7 +20,8 @@ public class SpiderLeg {
 
 	    public boolean crawl(String url)
 	    {
-	        try
+	        
+	    	try
 	        {
 	            Connection connection = Jsoup.connect(url).userAgent(USER_AGENT);
 	            Document htmlDocument = connection.get();
@@ -39,7 +40,10 @@ public class SpiderLeg {
 	            //System.out.println("Found (" + linksOnPage.size() + ") links");
 	            for(Element link : linksOnPage)
 	            {
-	                this.links.add(link.absUrl("href"));
+	            	if((link != null)&&(validateDomain(url, link.absUrl("href")))) {
+	            		 this.links.add(link.absUrl("href"));
+	            	}
+	               
 	            }
 	            return true;
 	        }
@@ -53,7 +57,17 @@ public class SpiderLeg {
 	        }
 	    }
 
-
+	    
+	    public boolean validateDomain(String urlDomain, String url) {
+	    	String uD = urlDomain.split("//")[1];
+	    	String domain = uD.split("/")[0];
+	    	if(url.contains(domain)) {
+	    		return true;
+	    	}
+	    	
+	    	return false;
+	    }
+	    
 	   
 	    public boolean searchForWord(String searchWord)
 	    {
