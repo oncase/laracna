@@ -1,3 +1,3 @@
 # Laracna
 
-A web spider.
+A web spider using jsoup API.
