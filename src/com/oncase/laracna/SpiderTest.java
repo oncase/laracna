@@ -4,7 +4,7 @@ public class SpiderTest {
 
 	public static void main(String[] args) {
 		Spider spider = new Spider();
-        spider.search("https://www.abcdobebe.com/");
+        spider.search("http://www2.zelo.com.br/");
         for (String page : spider.getPagesVisited()) {
 			System.out.println(page);
 		}

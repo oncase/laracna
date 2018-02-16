@@ -18,7 +18,7 @@ public class SpiderLeg {
 
 
 
-	    public boolean crawl(String url)
+	    public boolean crawl(String url, String domain)
 	    {
 	        
 	    	try
@@ -40,11 +40,16 @@ public class SpiderLeg {
 	            //System.out.println("Found (" + linksOnPage.size() + ") links");
 	            for(Element link : linksOnPage)
 	            {
-	            	if((link != null)&&(validateDomain(url, link.absUrl("href")))) {
-	            		 this.links.add(link.absUrl("href"));
+	            	if(validateDomain(domain, link.absUrl("href"))) {
+	            		if(!this.links.contains(link.absUrl("href"))) {
+	            			this.links.add(link.absUrl("href"));
+	            		}
+	            		 	
 	            	}
-	               
+	            		
 	            }
+	               
+	            
 	            return true;
 	        }
 	        catch(IOException ioe)
@@ -58,9 +63,9 @@ public class SpiderLeg {
 	    }
 
 	    
-	    public boolean validateDomain(String urlDomain, String url) {
-	    	String uD = urlDomain.split("//")[1];
-	    	String domain = uD.split("/")[0];
+	    public boolean validateDomain(String domain, String url) {
+	    	//String uD = urlDomain.split("//")[1];
+	    	//String domain = uD.split("/")[0];
 	    	if(url.contains(domain)) {
 	    		return true;
 	    	}
